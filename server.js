@@ -146,7 +146,7 @@ function normalizeLiveInvoice(inv) {
     client_email: billing.email_address || '',
     amount: parseFloat(amount.value || (items[0] && items[0].unit_amount && items[0].unit_amount.value) || 0),
     currency: amount.currency_code || detail.currency_code || 'USD',
-    description: (items[0] && items[0].name) || '',
+    description: (reg && reg.description) || (items[0] && items[0].name) || '',
     due_days: null,
     status: inv.status || 'UNKNOWN',
     payment_link: paymentLinkFromInvoice(inv),
