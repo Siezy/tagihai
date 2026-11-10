@@ -1,0 +1,81 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0e1116; color: #e6e8eb;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh; display: flex; justify-content: center;
+}
+.app { width: 100%; max-width: 760px; padding: 20px 16px 32px; display: flex; flex-direction: column; gap: 14px; }
+.header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.header h1 { font-size: 28px; letter-spacing: -0.5px; }
+.subtitle { color: #9aa3ad; font-size: 14px; margin-top: 4px; }
+.badge {
+  font-size: 12px; font-weight: 700; letter-spacing: 1px; padding: 6px 10px;
+  border-radius: 999px; white-space: nowrap;
+}
+.badge-mock { background: #3a2b00; color: #ffcf5c; border: 1px solid #6b5310; }
+.badge-live { background: #062e1d; color: #4ade80; border: 1px solid #14532d; }
+
+.stats {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  background: #161b22; border: 1px solid #262d36; border-radius: 12px; padding: 12px 14px;
+}
+.stat { display: flex; flex-direction: column; min-width: 90px; }
+.stat-label { font-size: 11px; color: #9aa3ad; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-value { font-size: 18px; font-weight: 700; margin-top: 2px; }
+.link-btn {
+  margin-left: auto; background: none; border: none; color: #6ea8fe;
+  font-size: 13px; cursor: pointer; text-decoration: underline;
+}
+.all-invoices { background: #161b22; border: 1px solid #262d36; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.hidden { display: none; }
+
+.chat {
+  background: #161b22; border: 1px solid #262d36; border-radius: 12px;
+  min-height: 380px; max-height: 52vh; overflow-y: auto; padding: 16px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.msg { max-width: 85%; padding: 10px 14px; border-radius: 14px; line-height: 1.5; font-size: 15px; white-space: pre-wrap; word-break: break-word; }
+.msg.user { align-self: flex-end; background: #1f6feb; color: #fff; border-bottom-right-radius: 4px; }
+.msg.agent { align-self: flex-start; background: #232a33; border-bottom-left-radius: 4px; }
+.msg.agent.typing { color: #9aa3ad; font-style: italic; }
+
+.invoice-card {
+  align-self: flex-start; width: 100%; max-width: 420px;
+  background: #101c2e; border: 1px solid #1f6feb55; border-radius: 12px; padding: 12px 14px;
+  display: flex; flex-direction: column; gap: 6px; font-size: 14px;
+}
+.invoice-card .row { display: flex; justify-content: space-between; gap: 8px; }
+.invoice-card .num { font-weight: 700; }
+.invoice-card .amount { font-weight: 700; font-size: 17px; }
+.status { font-size: 12px; font-weight: 700; padding: 3px 8px; border-radius: 999px; }
+.status-SENT { background: #3a2b00; color: #ffcf5c; }
+.status-DRAFT { background: #2b2b2b; color: #c9c9c9; }
+.status-PAID { background: #062e1d; color: #4ade80; }
+.status-CANCELLED, .status-REFUNDED { background: #3d0c0c; color: #f87171; }
+.pay-link { color: #6ea8fe; word-break: break-all; }
+.mock-tag { font-size: 11px; color: #ffcf5c; font-weight: 700; letter-spacing: 0.5px; }
+.mini-btn {
+  align-self: flex-start; background: #062e1d; color: #4ade80; border: 1px solid #14532d;
+  border-radius: 8px; padding: 6px 10px; font-size: 13px; cursor: pointer;
+}
+.mini-btn:hover { background: #0a3d27; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  background: #1c2330; color: #cdd6e0; border: 1px solid #2b3546; border-radius: 999px;
+  padding: 7px 12px; font-size: 13px; cursor: pointer;
+}
+.chip:hover { border-color: #1f6feb; color: #fff; }
+
+.composer { display: flex; gap: 8px; }
+.composer input {
+  flex: 1; background: #161b22; border: 1px solid #2b3546; color: #e6e8eb;
+  border-radius: 12px; padding: 12px 14px; font-size: 15px; outline: none;
+}
+.composer input:focus { border-color: #1f6feb; }
+.composer button {
+  background: #1f6feb; color: #fff; border: none; border-radius: 12px;
+  padding: 0 18px; font-size: 15px; font-weight: 600; cursor: pointer;
+}
+.composer button:hover { background: #388bfd; }
+.footer { color: #7a8592; font-size: 12px; line-height: 1.5; }

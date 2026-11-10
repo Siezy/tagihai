@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TagihAI — AI billing agent for freelancers</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="header">
+    <div>
+      <h1>💸 TagihAI</h1>
+      <p class="subtitle">AI billing agent buat freelancer — chat, invoice PayPal jadi, tinggal tagih.</p>
+    </div>
+    <span id="modeBadge" class="badge badge-mock">MOCK</span>
+  </header>
+
+  <section class="stats" id="statsBar">
+    <div class="stat"><span class="stat-label">Belum dibayar</span><span class="stat-value" id="statOutstanding">—</span></div>
+    <div class="stat"><span class="stat-label">Lunas</span><span class="stat-value" id="statPaid">—</span></div>
+    <div class="stat"><span class="stat-label">Belum lunas</span><span class="stat-value" id="statUnpaid">—</span></div>
+    <div class="stat"><span class="stat-label">Total invoice</span><span class="stat-value" id="statTotal">—</span></div>
+    <button class="link-btn" id="showAllBtn">Lihat semua invoice ↓</button>
+  </section>
+
+  <section class="all-invoices hidden" id="allInvoices"></section>
+
+  <main class="chat" id="chat"></main>
+
+  <div class="chips" id="chips">
+    <button class="chip" data-msg="Tagih Budi $150 buat desain logo, jatuh tempo 3 hari">Tagih Budi $150 desain logo</button>
+    <button class="chip" data-msg="Tagih Sari 150 ribu buat revisi website">Tagih Sari 150 ribu revisi web</button>
+    <button class="chip" data-msg="Siapa yang belum bayar?">Siapa yang belum bayar?</button>
+    <button class="chip" data-msg="Draf reminder buat Budi">Draf reminder buat Budi</button>
+    <button class="chip" data-msg="Bantuan">Bantuan</button>
+  </div>
+
+  <form class="composer" id="composer">
+    <input id="input" type="text" placeholder="Ketik di sini… contoh: Tagih Budi $150 desain logo" autocomplete="off">
+    <button type="submit">Kirim →</button>
+  </form>
+
+  <footer class="footer">
+    <span id="modeNote">Mode MOCK: tanpa API key, invoice hanya simulasi (SANDBOX MOCK). Isi PAYPAL_CLIENT_ID + PAYPAL_CLIENT_SECRET di .env untuk invoice PayPal sandbox beneran — tidak pernah ada uang asli.</span>
+  </footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

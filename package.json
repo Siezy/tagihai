@@ -1,0 +1,1 @@
+{"dependencies":{"dotenv":"^18.0.10","express":"^4.19.2"},"description":"TagihAI — an AI billing agent for freelancers. Chat in plain language, get real PayPal invoices (sandbox), track them, and draft reminders.","license":"MIT","main":"server.js","name":"tagihai","scripts":{"start":"node server.js"},"version":"1.0.0"}
