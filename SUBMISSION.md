@@ -1,5 +1,5 @@
 # TagihAI — Devpost submission draft (PayPal AI Hackathon)
-Deadline: Fri 2026-11-13 03:00 WIB. Status: DRAFT — update after live sandbox test.
+Deadline: Fri 2026-11-13 03:00 WIB. Status: READY except demo video link — live sandbox test passed 2026-11-11 (4 invoices created via chat, Sari's $9.09 invoice paid end-to-end, SENT → PAID).
 
 ## Title
 TagihAI — AI billing agent for freelancers
@@ -19,10 +19,20 @@ Freelancers lose money to awkward follow-ups and forgotten invoices. TagihAI is 
 - Gemini also drafts the polite payment reminders. A local regex parser is the fallback when no Gemini key is set, so the app still demos keyless.
 
 ## Tools / stack
-Node.js + Express, PayPal sandbox (Invoicing API v2), Google Gemini 2.0 Flash, plain HTML/CSS/JS frontend. No build step.
+Node.js + Express, PayPal sandbox (Invoicing API v2), Google Gemini (gemini-3.5-flash, free tier), plain HTML/CSS/JS frontend. No build step.
 
 ## Demo video
-Under 3 minutes, public on YouTube (to be recorded after the live sandbox test). Script: DEMO_SCRIPT.md.
+Under 3 minutes, public on YouTube. Script: DEMO_SCRIPT.md. Voiceover: `voiceover/shot-01.mp3` … `shot-10.mp3`.
+
+**YouTube URL: (paste after upload)**
+
+## Submission checklist
+- [ ] Title, tagline, description (above)
+- [ ] Repo: https://github.com/Siezy/tagihai (public ✓)
+- [ ] Demo video URL (public YouTube ✓)
+- [ ] "How PayPal is used" + "How AI is used" (above)
+- [ ] Tools (above)
+- [ ] Submit before Fri 2026-11-13 03:00 WIB (aim Thu night)
 
 ## Repo
 Public GitHub repo: https://github.com/Siezy/tagihai — MIT licensed, .env.example included, no secrets committed. Live-verified 2026-11-11: 4 sandbox invoices created via chat (Budi $150, Sari $9.09, Andi $200, Dewi $75), Sari's invoice paid end-to-end in sandbox (SENT → PAID).
