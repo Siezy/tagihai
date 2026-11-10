@@ -25,4 +25,4 @@ Node.js + Express, PayPal sandbox (Invoicing API v2), Google Gemini 2.0 Flash, p
 Under 3 minutes, public on YouTube (to be recorded after the live sandbox test). Script: DEMO_SCRIPT.md.
 
 ## Repo
-Public GitHub repo (to be created): TagihAI — MIT licensed, .env.example included, no secrets committed.
+Public GitHub repo: https://github.com/Siezy/tagihai — MIT licensed, .env.example included, no secrets committed. Live-verified 2026-11-11: 4 sandbox invoices created via chat (Budi $150, Sari $9.09, Andi $200, Dewi $75), Sari's invoice paid end-to-end in sandbox (SENT → PAID).
