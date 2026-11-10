@@ -16,7 +16,20 @@
  */
 require('dotenv').config();
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
+
+// Client-name registry: PayPal's invoice list does not return the recipient
+// name (we only sent an email at create time), so name-based lookups
+// ("Status invoice Sari") failed with "can't find". Keep id -> client here,
+// persisted to disk so restarts keep it. New invoices also send the name
+// to PayPal (billing_info.name) so PayPal itself stores it going forward.
+const REGISTRY_PATH = path.join(__dirname, 'client-registry.json');
+let clientRegistry = {};
+try { clientRegistry = JSON.parse(fs.readFileSync(REGISTRY_PATH, 'utf8')); } catch { clientRegistry = {}; }
+function saveRegistry() {
+  try { fs.writeFileSync(REGISTRY_PATH, JSON.stringify(clientRegistry, null, 2)); } catch { /* best effort */ }
+}
 
 const PORT = process.env.PORT || 3000;
 const PAYPAL_BASE = 'https://api-m.sandbox.paypal.com';
@@ -123,12 +136,13 @@ function normalizeLiveInvoice(inv) {
   const name = billing.name
     ? `${billing.name.given_name || ''} ${billing.name.surname || ''}`.trim()
     : '';
+  const reg = clientRegistry[inv.id];
   const amount = inv.amount || {};
   const items = inv.items || [];
   return {
     id: inv.id,
     number: detail.invoice_number || inv.id,
-    client: name || billing.email || 'Client',
+    client: (reg && reg.client) || name || billing.email_address || 'Client',
     client_email: billing.email_address || '',
     amount: parseFloat(amount.value || (items[0] && items[0].unit_amount && items[0].unit_amount.value) || 0),
     currency: amount.currency_code || detail.currency_code || 'USD',
@@ -141,6 +155,15 @@ function normalizeLiveInvoice(inv) {
   };
 }
 
+// Split "Budi Santoso" -> { given_name: 'Budi', surname: 'Santoso' }.
+// PayPal stores the name, so later list/get calls return it.
+function splitName(full) {
+  const parts = String(full || 'Client').trim().split(/\s+/);
+  const out = { given_name: parts[0] || 'Client' };
+  if (parts.length > 1) out.surname = parts.slice(1).join(' ');
+  return out;
+}
+
 async function createInvoiceLive(d) {
   const value = money(d.amount);
   const payload = {
@@ -150,7 +173,10 @@ async function createInvoiceLive(d) {
       currency_code: d.currency,
       payment_term: paymentTermForDueDays(d.due_days),
     },
-    primary_recipients: [{ billing_info: { email_address: d.client_email } }],
+    primary_recipients: [{ billing_info: {
+      name: splitName(d.client),
+      email_address: d.client_email,
+    } }],
     items: [{
       name: d.description,
       quantity: '1',
@@ -170,6 +196,8 @@ async function createInvoiceLive(d) {
   inv.client = d.client;
   inv.description = d.description;
   inv.due_days = d.due_days;
+  clientRegistry[invoiceId] = { client: d.client, description: d.description };
+  saveRegistry();
   return inv;
 }
 
